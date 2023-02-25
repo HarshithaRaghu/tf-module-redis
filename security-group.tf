@@ -6,16 +6,16 @@ resource "aws_security_group" "allow_redis" {
 
   ingress {
     description = "Allow DOCDB From Local Network"
-    from_port   = 6379
-    to_port     = 6379
+    from_port   = var.REDIS_PORT
+    to_port     = var.REDIS_PORT
     protocol    = "tcp"
     cidr_blocks = [data.terraform_remote_state.vpc.outputs.VPC_CIDR]   # [] represent's list. 
   }
 
   ingress {
     description = "Allow DOCDB From Default VPC Network"
-    from_port   = 6379
-    to_port     = 6379
+    from_port   = var.REDIS_PORT
+    to_port     = var.REDIS_PORT
     protocol    = "tcp"
     cidr_blocks = [data.terraform_remote_state.vpc.outputs.DEFAULT_VPC_CIDR]   # [] represent's list. 
   }
